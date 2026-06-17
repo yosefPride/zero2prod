@@ -92,6 +92,8 @@ Build the project
 
 CI must pass before merging.
 
+---
+
 ## Optional Tools
 ### Test Coverage
 * cargo tarpaulin --ignore-tests
