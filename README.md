@@ -30,35 +30,12 @@ This project focuses on building a production-grade web API using Rust, Actix We
 ---
 
 ## Project Structure
-  src/
-  main.rs # application entry point
-  routes/ # HTTP handlers
-  domain/ # business logic
-  db/ # database access layer
-  config/ # configuration management
-  tests/ # integration tests
 
-
----
-
-## Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/<your-username>/zero2prod.git
-cd zero2prod
-
-
-### 2. Install dependencies
-
-Make sure you have:
-
-Rust (stable toolchain)
-PostgreSQL
-sqlx-cli (optional, for migrations)
-3. Run the application
-cargo run
-
-Server will start locally (default: http://127.0.0.1:8000)
-
+```text
+src/
+  main.rs        # application entry point
+  routes/        # HTTP handlers
+  domain/        # business logic
+  db/            # database access layer
+  config/        # configuration management
+tests/           # integration tests
