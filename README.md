@@ -39,6 +39,9 @@ src/
   db/            # database access layer
   config/        # configuration management
 tests/           # integration tests
+```
+
+---
 
 ## Getting Started
 
@@ -47,3 +50,5 @@ tests/           # integration tests
 ```bash id="2v9c8p"
 git clone https://github.com/<your-username>/zero2prod.git
 cd zero2prod
+```
+---
