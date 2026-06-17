@@ -66,14 +66,20 @@ cargo run
 
 The server will start locally (default: http://127.0.0.1:8000).
 
+---
+
 ## Running Tests
 cargo test
+
+--- 
 
 ## Code Quality
 ### Formatting
 ```cargo fmt -- --check```
 ### Linting
 ```cargo clippy -- -D warnings```
+
+---
 
 ## CI Pipeline
 
@@ -92,6 +98,8 @@ CI must pass before merging.
 * Security Audit
 * cargo audit
 
+---
+
 ## Development Philosophy
 * correctness first
 * explicit error handling
@@ -99,9 +107,13 @@ CI must pass before merging.
 * strict CI enforcement
 * minimal assumptions about runtime environment
 
+---
+
 ## Status
 
 Work in progress (learning project).
+
+---
 
 ## License
 
