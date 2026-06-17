@@ -47,7 +47,7 @@ This project focuses on building a production-grade web API using Rust, Actix We
 
 ```bash
 git clone https://github.com/<your-username>/zero2prod.git
-cd zero2prod```
+cd zero2prod
 
 
 ### 2. Install dependencies
