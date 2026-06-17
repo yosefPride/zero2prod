@@ -68,3 +68,41 @@ The server will start locally (default: http://127.0.0.1:8000).
 
 ## Running Tests
 cargo test
+
+## Code Quality
+### Formatting
+```cargo fmt -- --check```
+### Linting
+```cargo clippy -- -D warnings```
+
+## CI Pipeline
+
+Every push and pull request triggers GitHub Actions:
+
+Build the project
+* Run tests
+* Check formatting
+* Run Clippy linting
+
+CI must pass before merging.
+
+## Optional Tools
+### Test Coverage
+* cargo tarpaulin --ignore-tests
+* Security Audit
+* cargo audit
+
+## Development Philosophy
+* correctness first
+* explicit error handling
+* reproducible builds
+* strict CI enforcement
+* minimal assumptions about runtime environment
+
+## Status
+
+Work in progress (learning project).
+
+## License
+
+This project is for educational purposes.
