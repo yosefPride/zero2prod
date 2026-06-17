@@ -52,3 +52,19 @@ git clone https://github.com/<your-username>/zero2prod.git
 cd zero2prod
 ```
 ---
+
+### 2. Install dependencies
+
+Make sure you have:
+
+* Rust (stable toolchain)
+* PostgreSQL
+* sqlx-cli (optional, for migrations)
+
+### 3. Run the application
+cargo run
+
+The server will start locally (default: http://127.0.0.1:8000).
+
+## Running Tests
+cargo test
