@@ -75,9 +75,13 @@ cargo test
 
 ## Code Quality
 ### Formatting
-```cargo fmt -- --check```
+```bash
+cargo fmt -- --check
+```
 ### Linting
-```cargo clippy -- -D warnings```
+```bash
+cargo clippy -- -D warnings
+```
 
 ---
 
