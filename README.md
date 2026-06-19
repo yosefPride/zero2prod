@@ -48,7 +48,7 @@ tests/           # integration tests
 ### 1. Clone the repository
 
 ```bash id="2v9c8p"
-git clone https://github.com/<your-username>/zero2prod.git
+git clone https://github.com/yosefPride/zero2prod.git
 cd zero2prod
 ```
 ---
