@@ -1,13 +1,11 @@
 use std::net::TcpListener;
 
-// if we fail to perform the required setup we can just panic and crash
-// all the things.
 fn spawn_app() -> String {
     // Port 0 is special-cased at the OS level: trying to bind port 0 will trigger an OS scan for an available port which
     // will then be bound to the application.
     let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port");
 
-    // We retrieve the port assigned to us by the OS
+    // Retrieve the port assigned by the OS
     let port = listener.local_addr().unwrap().port();
     let server = zero2prod::run(listener).expect("Failed to bind address");
 
@@ -15,21 +13,18 @@ fn spawn_app() -> String {
     // tokio::spawn returns a handle to the spawned future,
     // but we have no use for it here, hence the non-binding let
     let _ = tokio::spawn(server);
-    // We return the application address to the caller!
+    // Return the application address to the caller!
     return format!("http://127.0.0.1:{}", port);
 }
 
 // `tokio::test` is the testing equivalent of `tokio::main`.
 // It also spares you from having to specify the `#[test]` attribute.
-//
-// You can inspect what code gets generated using
-// `cargo expand --test health_check` (<- name of the test file)
+// Inspect what code gets generated using `cargo expand --test health_check` (<- name of the test file)
 #[tokio::test]
 async fn health_check_works() {
     // Arrange
     let address = spawn_app();
-    // We need to bring in `reqwest`
-    // to perform HTTP requests against our application.
+    // Bring in `reqwest` to perform HTTP requests against application.
     let client = reqwest::Client::new();
 
     // Act
