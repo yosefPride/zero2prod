@@ -8,8 +8,8 @@ async fn health_check() -> HttpResponse {
 
 #[derive(serde::Deserialize)]
 struct FormData {
-    email: String,
-    name: String,
+    // email: String,
+    // name: String,
 }
 
 // Let's start simple: we always return a 200 OK
