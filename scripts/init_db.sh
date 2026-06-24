@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
-set -x
+# set -x
+[[ "${DEBUG}" == "1" ]] && set -x
 set -eo pipefail
 
 # Load .env into the environment
-set -a
-source .env
-set +a
+if [ -f .env ]; then
+  set -a
+  source .env
+  set +a
+fi
 
 if ! [ -x "$(command -v psql)" ]; then
     echo >&2 "Error: psql is not installed."
     exit 1
 fi
-if ! [ -x "$(command -v sqlx)" ] && ! [ -x "/home/yosef/.cargo/bin/sqlx" ]; then
+if ! [ -x "$(command -v sqlx)" ]; then
     echo >&2 "Error: sqlx is not installed."
     echo >&2 "Use:"
     echo >&2 "
@@ -36,7 +39,7 @@ DB_HOST="${POSTGRES_HOST:=localhost}"
 if [[ -z "${SKIP_DOCKER}" ]]
 then
     # Launch postgres using Docker
-    docker run \
+    docker run --name newsletter-postgres \
     -e POSTGRES_USER=${DB_USER} \
     -e POSTGRES_PASSWORD=${DB_PASSWORD} \
     -e POSTGRES_DB=${DB_NAME} \
@@ -57,8 +60,9 @@ done
 
 export DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}
 
-/home/yosef/.cargo/bin/sqlx database create
-/home/yosef/.cargo/bin/sqlx migrate run
+# /home/yosef/.cargo/bin/sqlx database create
+sqlx database create
+sqlx migrate run
 >&2 echo "Postgres has been migrated, ready to go!"
 
 # WHEN RUNNING USE: SKIP_DOCKER=true sudo -E ./scripts/init_db.sh
