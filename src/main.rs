@@ -1,16 +1,17 @@
+use sqlx::{Connection, PgConnection};
 use std::net::TcpListener;
-
-use zero2prod::startup;
+use zero2prod::configuration::get_configuration;
+use zero2prod::startup::run;
 
 #[tokio::main]
-async fn main() -> std::io::Result<()> {
-    // 1. Bind to desired production address and port
-    let address = "127.0.0.1:8080";
-    let listener = TcpListener::bind(address).expect("Failed to bind to port 8080");
-
-    println!("Listening on http://{}", address);
-
-    // 2. Pass the listener to architectural run function
-    // and .await it so the main function doesn't exit immediately.
-    startup::run(listener)?.await
+async fn main() -> Result<(), std::io::Error> {
+    // Panic if we can't read configuration
+    let configuration = get_configuration().expect("Failed to read configuration");
+    let connection = PgConnection::connect(&configuration.database.connection_string())
+        .await
+        .expect("Failed to connect to Postgres.");
+    // We have removed the hard-coded `8080` - it's now coming from our settings!
+    let address = format!("127.0.0.1:{}", configuration.application_port);
+    let listener = TcpListener::bind(address)?;
+    run(listener, connection)?.await
 }
