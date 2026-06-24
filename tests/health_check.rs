@@ -1,5 +1,7 @@
 use std::net::TcpListener;
 
+use zero2prod::startup;
+
 fn spawn_app() -> String {
     // Port 0 is special-cased at the OS level: trying to bind port 0 will trigger an OS scan for an available port which
     // will then be bound to the application.
@@ -7,7 +9,7 @@ fn spawn_app() -> String {
 
     // Retrieve the port assigned by the OS
     let port = listener.local_addr().unwrap().port();
-    let server = zero2prod::run(listener).expect("Failed to bind address");
+    let server = startup::run(listener).expect("Failed to bind address");
 
     // Launch the server as a background task
     // tokio::spawn returns a handle to the spawned future,

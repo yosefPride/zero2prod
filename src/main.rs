@@ -1,5 +1,7 @@
 use std::net::TcpListener;
 
+use zero2prod::startup;
+
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
     // 1. Bind to desired production address and port
@@ -10,5 +12,5 @@ async fn main() -> std::io::Result<()> {
 
     // 2. Pass the listener to architectural run function
     // and .await it so the main function doesn't exit immediately.
-    zero2prod::run(listener)?.await
+    startup::run(listener)?.await
 }
